@@ -1,0 +1,6 @@
+inbound,tcp,80,1.2.3.4
+inbound,tcp,80,34.54.94.12
+outbound,udp,4321,54.100.231.98
+outbound,udp,100,32.123.42.94
+inbound,udp,100,1.1.1.1
+outbound,tcp,34,95.32.12.0
