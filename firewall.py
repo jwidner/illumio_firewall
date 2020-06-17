@@ -2,8 +2,8 @@ import doctest
 
 def ip_lte(a, b):
     """Return True if ip address `a` is less than or equal to ip address `b`."""
-    a = [int(x) for x in a.split('.')]
-    b = [int(x) for x in b.split('.')]
+    a = (int(x) for x in a.split('.'))
+    b = (int(x) for x in b.split('.'))
     for l, u in zip(a, b):
         if l > u:
             return False
@@ -11,8 +11,8 @@ def ip_lte(a, b):
 
 def ip_gte(a, b):
     """Return True if ip address `a` is greater than or equal to ip address `b`."""
-    a = [int(x) for x in a.split('.')]
-    b = [int(x) for x in b.split('.')]
+    a = (int(x) for x in a.split('.'))
+    b = (int(x) for x in b.split('.'))
     for l, u in zip(a, b):
         if l < u:
             return False
@@ -90,10 +90,10 @@ class PolicyGroup:
     the policies."""
     def __init__(self):
         self.policies = set()
+        # If you can't understand what these four lines do, I don't want to work
+        # for you :)
         self.min_port = 65535
         self.max_port = 1
-        # If you can't understand what these two lines do, I don't want to work
-        # for you :)
         self.min_ip = '255.255.255.255'
         self.max_ip = '0.0.0.0'
 
@@ -153,9 +153,7 @@ class Firewall:
             True if the packet is allowed by the firewall policy. False otherwise.
         """
         policy_group = self.policy_groups[(direction, protocol)]
-        if policy_group.contains(port, ip_address):
-            return True
-        return False
+        return policy_group.contains(port, ip_address)
 
 if __name__ == "__main__":
     doctest.testmod()
