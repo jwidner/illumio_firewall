@@ -92,6 +92,8 @@ class PolicyGroup:
         self.policies = set()
         self.min_port = 65535
         self.max_port = 1
+        # If you can't understand what these two lines do, I don't want to work
+        # for you :)
         self.min_ip = '255.255.255.255'
         self.max_ip = '0.0.0.0'
 
